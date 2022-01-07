@@ -12,3 +12,4 @@ if __name__ == '__main__':
     decoder = Decoder(encoder.word_list)
 
     decoded_text = decoder.decode(encoded_text)
+    print(decoded_text)
