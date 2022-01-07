@@ -2,9 +2,9 @@ import re
 import random
 
 class Encoder:
-    separator = '\n—weird—\n'
+    separator = '\n-weird-\n'
     
-    def __init__(self):
+    def __init__(self) -> None:
         self.tokenize_re = re.compile(r'(\w+)', re.U)
 
         self.word_list = list()
@@ -26,9 +26,9 @@ class Encoder:
 
             data_out = data_out.replace(word, word_shuffled)
 
-            print(f'{word} -> {word_shuffled}')
-        
-
+            # print(f'{word} -> {word_shuffled}')
+            
+        self.word_list.sort(key=str.lower)
         return self.separator + data_out + self.separator
 
 
