@@ -3,6 +3,9 @@ import re
 from decoder_exceptions import *
 
 class Decoder:
+    """
+    A class to represent a encoder.
+    """
     separator = '\n-weird-\n'
 
     def __init__(self, word_list: list) -> None:
@@ -23,8 +26,8 @@ class Decoder:
 
     def decode(self, data_in: str) -> str:
         """
-        :param data: 
-        :return:
+        Main decoding function. Returns decoded text. If
+        there are no separators, it returns the original text.
         """
 
         try:
@@ -46,6 +49,11 @@ class Decoder:
 
         
     def _extract_encoded_text(self, data_in: str) -> str:
+        """
+        Strips off encoded text from the separators.
+        Returns the text without separators. If there
+        are no separators, it raises an exception.
+        """
         if self.separator in data_in:
             data_to_decode = data_in.split(self.separator)
             return data_to_decode[1]
@@ -53,6 +61,11 @@ class Decoder:
             raise NoSeparatorError()
 
     def _match_word(self, encoded_word: str) -> str:
+        """
+        Function tries to match the encoded word with the
+        original word. If it can't find a match, it raises
+        an exception.
+        """
         for word in self.word_list:
             if len(word) == len(encoded_word):
                 number_of_confirmed_chars = 0
