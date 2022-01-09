@@ -15,9 +15,11 @@ class Encoder:
         :return:
         """
 
+        if len(data_in) == 0:
+            return data_in
+
         data_out = data_in
 
-        # self.word_list = re.findall(self.tokenize_re, data)
         for match in re.finditer(self.tokenize_re, data_in):
             word = match.group()
             self.word_list.append(word)
