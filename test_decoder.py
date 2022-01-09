@@ -1,9 +1,15 @@
+"""This module contains tests for Decoder class."""
+
+# pylint: disable=protected-access
+
 import pytest
 
 from decoder import Decoder
-from decoder_exceptions import *
+from decoder_exceptions import NoSeparatorError, NoMatchWordFoundError, EmptyWordListError
 
-def test_Decoder():
+
+def test_decoder():
+    """Test the decoder class."""
     decoder = Decoder(["abc"])
     assert decoder
     assert decoder.word_list == ["abc"]
@@ -11,14 +17,18 @@ def test_Decoder():
     with pytest.raises(EmptyWordListError):
         decoder = Decoder([])
 
-def test_Decoder__extract_encoded_text():
+
+def test_decoder__extract_encoded_text():
+    """Test the decoder's extract_encoded_text function."""
     decoder = Decoder(["abc"])
     assert decoder._extract_encoded_text("\n-weird-\ncba\n-weird-\n") == "cba"
 
     with pytest.raises(NoSeparatorError):
         decoder._extract_encoded_text("cba")
 
-def test_Decoder__match_word():
+
+def test_decoder__match_word():
+    """Test the decoder's _match_word function."""
     decoder = Decoder(["abc"])
     assert decoder._match_word("bac") == "abc"
 
@@ -29,7 +39,9 @@ def test_Decoder__match_word():
     with pytest.raises(NoMatchWordFoundError):
         decoder._match_word("abc")
 
-def test_Decoder_decode():
+
+def test_decoder_decode():
+    """Test the decoder's decode function."""
     decoder = Decoder(["abc"])
     assert decoder.decode("cba") == "cba"
 
