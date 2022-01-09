@@ -1,6 +1,11 @@
+"""
+This module contains the decoder class only.
+"""
+
 import re
 
-from decoder_exceptions import *
+from decoder_exceptions import NoSeparatorError, NoMatchWordFoundError, EmptyWordListError
+
 
 class Decoder:
     """
@@ -15,14 +20,15 @@ class Decoder:
 
     @property
     def word_list(self) -> str:
+        """Holds ordered list of original words."""
         return self._word_list
 
     @word_list.setter
     def word_list(self, word_list: str) -> None:
-        if len(word_list) == 0:
-            raise EmptyWordListError()
-        else:
+        if len(word_list) != 0:
             self._word_list = word_list
+        else:
+            raise EmptyWordListError()
 
     def decode(self, data_in: str) -> str:
         """
@@ -39,15 +45,13 @@ class Decoder:
                 decoded_word = self._match_word(encoded_word)
 
                 data_to_decode = data_to_decode.replace(encoded_word, decoded_word)
-            
+
             return data_to_decode
 
-        except NoSeparatorError as e:
-            print(e)
+        except NoSeparatorError as error:
+            print(error)
             return data_in
 
-
-        
     def _extract_encoded_text(self, data_in: str) -> str:
         """
         Strips off encoded text from the separators.
@@ -57,8 +61,8 @@ class Decoder:
         if self.separator in data_in:
             data_to_decode = data_in.split(self.separator)
             return data_to_decode[1]
-        else:
-            raise NoSeparatorError()
+
+        raise NoSeparatorError()
 
     def _match_word(self, encoded_word: str) -> str:
         """
@@ -85,4 +89,3 @@ class Decoder:
                     return word
 
         raise NoMatchWordFoundError()
-
