@@ -46,5 +46,12 @@ class Encoder:
     def _shuffle(self, word: str) -> str:
         """Shuffle the characters in a word."""
         word_characters = list(word)
-        random.shuffle(word_characters)
-        return ''.join(word_characters)
+
+        # Just making sure that shuffle produces
+        # the same word as the original.
+        shuffled_word = word
+        while shuffled_word == word:
+            random.shuffle(word_characters)
+            shuffled_word = ''.join(word_characters)
+        
+        return shuffled_word
