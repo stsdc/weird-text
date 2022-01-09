@@ -23,5 +23,3 @@ def decode():
     decoder.word_list = encoder.word_list
     decoded_text = decoder.decode(request.json['encoded_text'])
     return jsonify({'decoded_text': decoded_text})
-
-
