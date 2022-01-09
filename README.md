@@ -3,6 +3,8 @@
 ![Lint](https://github.com/stsdc/weird-text/actions/workflows/pylint.yml/badge.svg)
 ![Lint](https://github.com/stsdc/weird-text/actions/workflows/pytest.yml/badge.svg)
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 
 #### Weird Text will encode and decode text preserving all formatting and punctuation.
 
@@ -44,6 +46,11 @@ if __name__ == '__main__':
 ```
 
 ### As API requests
+
+You may try and test using this URL:
+
+* https://kkjijk.herokuapp.com/v1/encode
+* https://kkjijk.herokuapp.com/v1/decode
 
 #### Create a POST request to `/v1/encode` with the text to encode:
 
@@ -88,3 +95,15 @@ pytest ./test_*
 ```bash
 pylint *.py
 ```
+
+## Deploying to Heroku
+
+```bash
+$ heroku create
+$ git push heroku main
+$ heroku open
+```
+
+or 
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
