@@ -15,6 +15,7 @@ decoder = Decoder()
 
 
 @app.route('/v1/encode', methods=['POST'])
+@cross_origin()
 def encode():
     """Handling the request to encode a text."""
     encoded_text = encoder.encode(request.json['text'])
@@ -22,6 +23,7 @@ def encode():
 
 
 @app.route('/v1/decode', methods=['POST'])
+@cross_origin()
 def decode():
     """Handling the request to decode a text."""
     decoder.word_list = encoder.word_list
