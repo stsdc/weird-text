@@ -17,6 +17,8 @@ pip install -r requirements_dev.txt # for development purposes only
 
 ## Usage
 
+Run `./example.py`:
+
 ```python
 from encoder import Encoder
 from decoder import Decoder
