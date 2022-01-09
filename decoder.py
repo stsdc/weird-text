@@ -13,10 +13,9 @@ class Decoder:
     """
     separator = '\n-weird-\n'
 
-    def __init__(self, word_list: list) -> None:
+    def __init__(self) -> None:
         self.re_all_words = re.compile(r'(\w+)', re.U)
         self.re_all_encoded_words = re.compile(r'(?:-weird-)', re.U)
-        self.word_list = word_list
 
     @property
     def word_list(self) -> str:

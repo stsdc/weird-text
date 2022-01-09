@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Main module"""
+"""Example usage"""
 
 from encoder import Encoder
 from decoder import Decoder
@@ -15,7 +15,9 @@ if __name__ == '__main__':
     print(ENCODED_TEXT)
     print(encoder.word_list)
 
-    decoder = Decoder(encoder.word_list)
+    decoder = Decoder()
+    decoder.word_list = encoder.word_list
+
 
     decoded_text = decoder.decode(ENCODED_TEXT)
     print(decoded_text)
